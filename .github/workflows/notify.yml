@@ -1,8 +1,17 @@
-bmFtZTogTm90aWZ5IEhpcmEKCm9uOgogIHB1c2g6CiAgICBicmFuY2hlczoKICAgICAgLSBtYWlu
-Cgpqb2JzOgogIHNlbmQtdGV4dDoKICAgIHJ1bnMtb246IHVidW50dS1sYXRlc3QKICAgIHN0ZXBz
-OgogICAgICAtIG5hbWU6IFNlbmQgdGV4dCB0byBIaXJhCiAgICAgICAgcnVuOiB8CiAgICAgICAg
-ICBjdXJsIC1zIGh0dHBzOi8vdGV4dGJlbHQuY29tL3RleHQgXAogICAgICAgICAgICAtLWRhdGEt
-dXJsZW5jb2RlIHBob25lPSIke3sgc2VjcmV0cy5ISVJBX1BIT05FIH19IiBcCiAgICAgICAgICAg
-IC0tZGF0YS11cmxlbmNvZGUgbWVzc2FnZT0iQWxpIGp1c3QgdXBkYXRlZCBhbGlhbmRoaXJhLmNv
-bSDigJQgZ28gY2hlY2sgaXQgb3V0IPCfpI0iIFwKICAgICAgICAgICAgLS1kYXRhLXVybGVuY29k
-ZSBrZXk9IiR7eyBzZWNyZXRzLlRFWFRCRUxUX0tFWSB9fSIK
+name: Notify Hira
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send-text:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send text to Hira
+        run: |
+          curl -s https://textbelt.com/text \
+            --data-urlencode phone="${{ secrets.HIRA_PHONE }}" \
+            --data-urlencode message="Ali just updated aliandhira.com — go check it out 🤍" \
+            --data-urlencode key="${{ secrets.TEXTBELT_KEY }}"
