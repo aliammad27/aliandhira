@@ -12,6 +12,7 @@ jobs:
       - name: Send text to Hira
         run: |
           curl -s https://textbelt.com/text \
+            -H "Referer: https://aliandhira.com" \
             --data-urlencode phone="${{ secrets.HIRA_PHONE }}" \
             --data-urlencode message="Ali here — just updated aliandhira.com, go check it out 🤍" \
             --data-urlencode key="${{ secrets.TEXTBELT_KEY }}"
